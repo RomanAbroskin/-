@@ -4,7 +4,10 @@ import java.nio.file.Path;
 import java.util.*;
 
 //Класс генерирует всевозможные комбинации паролей из допустимого множества символов.
+
 public class PasswordsGenerator {
+
+   private static String pop;
     private List<String> alphabet;       //Допустимое множество символов
 
     public PasswordsGenerator(List<String> alphabet) {
@@ -18,11 +21,14 @@ public class PasswordsGenerator {
         if(cur.length() == length) {
             cv.add(cur);
             System.out.println(cur);
+            String pub="C:/javadef/combinations-master/"+pop;
             try {
-                FileOutputStream fos = new FileOutputStream("C:/javadef/combinations-master/readme.txt");
+                FileOutputStream fos = new FileOutputStream(pub+"",true);
                 Scanner s=new Scanner(cur);
                 String sdf=s.next();
-                fos.write(sdf.toString().getBytes());
+                String gdhf=sdf+"\n";
+                fos.write(gdhf.getBytes());
+                fos.close();
             }catch (IOException ex){
                 System.out.println(ex.getMessage());
             }
@@ -40,5 +46,15 @@ public class PasswordsGenerator {
         generateHelper(length, "");
     }
 
+    public PasswordsGenerator(String pop) {
+        this.pop = pop;
+    }
 
+    public String getPop() {
+        return pop;
+    }
+
+    public void setPop(String pop) {
+        this.pop = pop;
+    }
 }
